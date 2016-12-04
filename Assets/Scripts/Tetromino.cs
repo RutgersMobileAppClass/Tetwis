@@ -1,14 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+//[RequireComponent(typeof(AudioSource))]
 
 public class Tetromino : MonoBehaviour{
 	private bool enabled = true;
 	private Rigidbody2D rb2d;
 	private float mass;
 	private GameObject light;
+	public AudioClip impact;
+	public AudioClip change;
+	AudioSource audioContact;
+	AudioSource audioSwitch;
 
 	// Use this for initialization
 	void Start (){
+
+		audioContact = GetComponent<AudioSource> ();
+		audioSwitch = GetComponent<AudioSource> ();
 		rb2d = GetComponent<Rigidbody2D> ();
 		rb2d.velocity = new Vector2 (0.0f, -5.0f);
 		mass = rb2d.mass;
@@ -42,6 +50,7 @@ public class Tetromino : MonoBehaviour{
 			transform.position += new Vector3 (-1.0f, 0, 0);
 		} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
 			transform.Rotate (0, 0, 90);
+			audioSwitch.PlayOneShot (change, 0.7F);
 		} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
 			rb2d.velocity = new Vector2 (0.0f,-15.0f);
 		} else if (Input.GetKeyUp(KeyCode.DownArrow)){
@@ -54,6 +63,7 @@ public class Tetromino : MonoBehaviour{
 			enabled = false;
 			FindObjectOfType<Game> ().SpawnNextTetromino();
 			rb2d.mass = rb2d.mass * 1000000;
+			audioContact.PlayOneShot (impact, 0.7F);
 		}
 	}
 
