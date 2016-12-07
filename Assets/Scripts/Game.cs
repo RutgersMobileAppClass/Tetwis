@@ -10,6 +10,7 @@ public class Game : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+<<<<<<< HEAD
 		SpawnNextTetromino ();
 
 
@@ -18,12 +19,20 @@ public class Game : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+=======
+		SpawnNextTetromino (0);
+>>>>>>> refs/remotes/origin/JonathanZelayaUnity
 	}
 
-	public void SpawnNextTetromino(){
-		Object o = Resources.Load(GetRandomTetromino(),typeof(GameObject));
-		Vector2 location = new Vector2 (0f, 18f);
+	public void SpawnNextTetromino(float height){
+		if (height == 0) {
+			height = 18.0f;
+		}
+		string name = GetRandomTetromino ();
+		Object o = Resources.Load(name,typeof(GameObject));
+		Vector2 location = new Vector2 (0.5f, height);
 		GameObject next = (GameObject)Instantiate (o, location, Quaternion.identity);
+		next.name = name;
 	}
 
 	private string GetRandomTetromino(){
@@ -55,7 +64,7 @@ public class Game : MonoBehaviour {
 			break;
 		}
 		return randomTetrominoName;
-		//return "Prefabs/Tetromino_Square";
+		//return "Prefabs/Tetromino_Z";
 	}
 		
 }
