@@ -1,14 +1,18 @@
 # Found on StackOverflow
-# Our gitignore file should be similar, if not identical.
+# with reference to https://github.com/github/gitignore
 # =============== #
 # Unity generated #
 # =============== #
-Temp/
-Library/
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/Assets/AssetStoreTools*
 
-# ===================================== #
-# Visual Studio / MonoDevelop generated #
-# ===================================== #
+# ================================================ #
+# Visual Studio / MonoDevelop  / Consulo generated #
+# ================================================ #
 ExportedObj/
 obj/
 *.svd
@@ -20,6 +24,8 @@ obj/
 *.user
 *.unityproj
 *.booproj
+.consulo/
+*.tmp
 
 # ============ #
 # OS generated #
