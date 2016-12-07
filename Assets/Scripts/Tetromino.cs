@@ -3,29 +3,36 @@ using System.Collections;
 //[RequireComponent(typeof(AudioSource))]
 
 public class Tetromino : MonoBehaviour{
-	public float speed = 5.0f;
-	public GameObject cam;
-
-	private bool grace = false;
-	private bool blockEnabled = true;
-	private Rigidbody2D rb2d;
+    private bool onTheFly = false;
+    private bool inGrace = false;
+    private Rigidbody2D rb2d;
 	private float mass;
-	private GameObject light;
-	public AudioClip impact;
-	public AudioClip change;
-	AudioSource audioContact;
-	AudioSource audioSwitch;
-	//private bool closeEnough = true;
+    private GameObject temi;
+    private Vector2 forceLeft;
+    private Vector2 forceRight;
+    public float speed = 5.0f;
+    public GameObject cam;
+    public AudioClip impact;
+    public AudioClip change;
+    AudioSource audioContact;
+    AudioSource audioSwitch;
 
-	// Use this for initialization
-	void Start (){
+    private bool grace = false;
+    private bool blockEnabled = true;
 
-		audioContact = GetComponent<AudioSource> ();
-		audioSwitch = GetComponent<AudioSource> ();
-		rb2d = GetComponent<Rigidbody2D> ();
-		rb2d.velocity = new Vector2 (0.0f, -speed);
-	}
+    // Use this for initialization
+    void Start ()
+    {
+        audioContact = GetComponent<AudioSource>();
+        audioSwitch = GetComponent<AudioSource>();
+        rb2d = GetComponent<Rigidbody2D> ();
+		rb2d.velocity = new Vector2 (0.0f, -5.0f);
+		mass = rb2d.mass;
+        forceLeft = new Vector2(-1, 0);
+        forceRight = new Vector2(1, 0);
+        //rb2d.inertia = 1.0f;
 
+    }
 	// Update is called once per frame
 	void Update (){
 		checkUserInput ();
@@ -41,7 +48,7 @@ public class Tetromino : MonoBehaviour{
 		
 	void OnCollisionEnter2D(Collision2D col)
     {
-        audioContact.PlayOneShot(impact, 0.7F);
+        audioSwitch.PlayOneShot(change, 0.7F);
         if (blockEnabled && !grace) {
 			StartCoroutine (waitTime ());
 		}
@@ -81,8 +88,8 @@ public class Tetromino : MonoBehaviour{
 		} else if (moveLeft) {
 			transform.position += new Vector3 (-1.0f, 0, 0);
 		} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
-            audioSwitch.PlayOneShot(change, 0.7F);
-            if (gameObject.name.Equals("Prefabs/Tetromino_Square")){
+     
+			if(gameObject.name.Equals("Prefabs/Tetromino_Square")){
 				// do nothing
 			}else{
 				transform.Rotate (0, 0, 90);
@@ -100,8 +107,12 @@ public class Tetromino : MonoBehaviour{
 		xPosition = xPosition * 2;
 		xPosition = (float)System.Math.Round (xPosition, System.MidpointRounding.AwayFromZero);
 		rb2d.position = new Vector2 (xPosition/2, currentPosition.y);
-	}
 
+	}
+    
+    void OnTriggerStay2D() { }
+		//cam = (Camera) GameObject.FindGameObjectWithTag ("MainCamera");
+		//cam.transform.position = cam.transform.position + new Vector3 (0.0f, 5.0f);\
 	Vector2 roundOtherPosition(Vector2 pos){
 		Vector2 currentPosition = pos;
 		float xPosition = currentPosition.x;
