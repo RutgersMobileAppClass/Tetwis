@@ -1,11 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class Game : MonoBehaviour {
+
+
 
 	// Use this for initialization
 	void Start () {
 		SpawnNextTetromino ();
+
+
 	}
 	
 	// Update is called once per frame
@@ -50,4 +57,5 @@ public class Game : MonoBehaviour {
 		return randomTetrominoName;
 		//return "Prefabs/Tetromino_Square";
 	}
+		
 }
