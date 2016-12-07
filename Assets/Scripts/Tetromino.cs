@@ -9,16 +9,13 @@ public class Tetromino : MonoBehaviour{
 	private bool grace = false;
 	private bool blockEnabled = true;
 	private Rigidbody2D rb2d;
-<<<<<<< HEAD
 	private float mass;
 	private GameObject light;
 	public AudioClip impact;
 	public AudioClip change;
 	AudioSource audioContact;
 	AudioSource audioSwitch;
-=======
 	//private bool closeEnough = true;
->>>>>>> refs/remotes/origin/JonathanZelayaUnity
 
 	// Use this for initialization
 	void Start (){
@@ -42,8 +39,10 @@ public class Tetromino : MonoBehaviour{
 			
 	}
 		
-	void OnCollisionEnter2D(Collision2D col){
-		if (blockEnabled && !grace) {
+	void OnCollisionEnter2D(Collision2D col)
+    {
+        audioContact.PlayOneShot(impact, 0.7F);
+        if (blockEnabled && !grace) {
 			StartCoroutine (waitTime ());
 		}
 		col.rigidbody.position = roundOtherPosition (col.rigidbody.position);
@@ -82,41 +81,25 @@ public class Tetromino : MonoBehaviour{
 		} else if (moveLeft) {
 			transform.position += new Vector3 (-1.0f, 0, 0);
 		} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
-<<<<<<< HEAD
-			transform.Rotate (0, 0, 90);
-			audioSwitch.PlayOneShot (change, 0.7F);
-		} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
-			rb2d.velocity = new Vector2 (0.0f,-15.0f);
-=======
-			if(gameObject.name.Equals("Prefabs/Tetromino_Square")){
+            audioSwitch.PlayOneShot(change, 0.7F);
+            if (gameObject.name.Equals("Prefabs/Tetromino_Square")){
 				// do nothing
 			}else{
 				transform.Rotate (0, 0, 90);
 			}
 		} else if (moveDown) {
 			transform.position += new Vector3 (0, -1f, 0f);
->>>>>>> refs/remotes/origin/JonathanZelayaUnity
 		} else if (Input.GetKeyUp(KeyCode.DownArrow)){
 			rb2d.velocity = new Vector2(0.0f,-speed);
 		}
 	}
-
-<<<<<<< HEAD
-	void OnCollisionEnter2D(Collision2D col){
-		if (enabled) {
-			enabled = false;
-			FindObjectOfType<Game> ().SpawnNextTetromino();
-			rb2d.mass = rb2d.mass * 1000000;
-			audioContact.PlayOneShot (impact, 0.7F);
-		}
-=======
+    
 	void roundPosition(){
 		Vector2 currentPosition = rb2d.position;
 		float xPosition = currentPosition.x;
 		xPosition = xPosition * 2;
 		xPosition = (float)System.Math.Round (xPosition, System.MidpointRounding.AwayFromZero);
 		rb2d.position = new Vector2 (xPosition/2, currentPosition.y);
->>>>>>> refs/remotes/origin/JonathanZelayaUnity
 	}
 
 	Vector2 roundOtherPosition(Vector2 pos){
