@@ -3,6 +3,28 @@ using System.Collections;
 //[RequireComponent(typeof(AudioSource))]
 
 public class Tetromino : MonoBehaviour{
+<<<<<<< HEAD
+	private bool enabled = true;
+    private bool onTheFly = false;
+    private bool inGrace = false;
+    private Rigidbody2D rb2d;
+	private float mass;
+	private GameObject light;
+    private GameObject temi;
+    private Vector2 forceLeft;
+    private Vector2 forceRight;
+
+    // Use this for initialization
+    void Start (){
+		rb2d = GetComponent<Rigidbody2D> ();
+		rb2d.velocity = new Vector2 (0.0f, -5.0f);
+		mass = rb2d.mass;
+        forceLeft = new Vector2(-1, 0);
+        forceRight = new Vector2(1, 0);
+        //rb2d.inertia = 1.0f;
+
+    }
+=======
 	public float speed = 5.0f;
 	public GameObject cam;
 
@@ -28,6 +50,7 @@ public class Tetromino : MonoBehaviour{
 		rb2d = GetComponent<Rigidbody2D> ();
 		rb2d.velocity = new Vector2 (0.0f, -speed);
 	}
+>>>>>>> refs/remotes/origin/master
 
 	// Update is called once per frame
 	void Update (){
@@ -53,6 +76,19 @@ public class Tetromino : MonoBehaviour{
 		if (!blockEnabled) {
 			return;
 		}
+<<<<<<< HEAD
+
+        if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            if (onTheFly)
+                rb2d.AddForce(forceRight, ForceMode2D.Impulse);
+            else
+                transform.position += new Vector3 (1.0f, 0, 0);
+		} else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+            if (onTheFly)
+                rb2d.AddForce(forceLeft, ForceMode2D.Impulse);
+            else
+                transform.position += new Vector3 (-1.0f, 0, 0);
+=======
 		// touch 0,0 is at the bottom left
 		bool moveRight = false;
 		bool moveLeft = false;
@@ -81,12 +117,17 @@ public class Tetromino : MonoBehaviour{
 			transform.position += new Vector3 ( 1.0f, 0, 0);
 		} else if (moveLeft) {
 			transform.position += new Vector3 (-1.0f, 0, 0);
+>>>>>>> refs/remotes/origin/master
 		} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
 <<<<<<< HEAD
 			transform.Rotate (0, 0, 90);
 			audioSwitch.PlayOneShot (change, 0.7F);
 		} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
 			rb2d.velocity = new Vector2 (0.0f,-15.0f);
+<<<<<<< HEAD
+        } else if (Input.GetKeyUp(KeyCode.DownArrow)){
+			rb2d.velocity = new Vector2(0.0f,-5.0f);
+=======
 =======
 			if(gameObject.name.Equals("Prefabs/Tetromino_Square")){
 				// do nothing
@@ -98,16 +139,22 @@ public class Tetromino : MonoBehaviour{
 >>>>>>> refs/remotes/origin/JonathanZelayaUnity
 		} else if (Input.GetKeyUp(KeyCode.DownArrow)){
 			rb2d.velocity = new Vector2(0.0f,-speed);
+>>>>>>> refs/remotes/origin/master
 		}
 	}
 
 <<<<<<< HEAD
 	void OnCollisionEnter2D(Collision2D col){
+<<<<<<< HEAD
+		if (enabled && !inGrace) {
+            StartCoroutine(grace());
+=======
 		if (enabled) {
 			enabled = false;
 			FindObjectOfType<Game> ().SpawnNextTetromino();
 			rb2d.mass = rb2d.mass * 1000000;
 			audioContact.PlayOneShot (impact, 0.7F);
+>>>>>>> refs/remotes/origin/master
 		}
 =======
 	void roundPosition(){
@@ -118,13 +165,31 @@ public class Tetromino : MonoBehaviour{
 		rb2d.position = new Vector2 (xPosition/2, currentPosition.y);
 >>>>>>> refs/remotes/origin/JonathanZelayaUnity
 	}
+    IEnumerator grace()
+    {
+        inGrace = true;
+        //Wait one second after the first collision and allow user to make on-the-fly corrections
+        //Then cut off the user actions and make a new block
+        yield return new WaitForSecondsRealtime(0.5f);
+        onTheFly = true;
+        enabled = false;
+        FindObjectOfType<Game>().SpawnNextTetromino();
+        rb2d.mass = rb2d.mass * 1000000;
+        inGrace = false;
+    }
 
+<<<<<<< HEAD
+    void OnTriggerStay2D(){
+		//cam = (Camera) GameObject.FindGameObjectWithTag ("MainCamera");
+		//cam.transform.position = cam.transform.position + new Vector3 (0.0f, 5.0f);
+=======
 	Vector2 roundOtherPosition(Vector2 pos){
 		Vector2 currentPosition = pos;
 		float xPosition = currentPosition.x;
 		xPosition = xPosition * 2;
 		xPosition = (float)System.Math.Round (xPosition, System.MidpointRounding.AwayFromZero);
 		return new Vector2 (xPosition/2, currentPosition.y);
+>>>>>>> refs/remotes/origin/master
 	}
 
 	IEnumerator waitTime(){
