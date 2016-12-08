@@ -4,19 +4,21 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class changeScene : MonoBehaviour {
-    public Button btn;
 
-    void Start()
+	public void loadLevel(int a)
     {
-        btn = GetComponent<Button>();
-        btn.onClick.AddListener(loadLevel);
+        //Scene currentScene = SceneManager.GetActiveScene();
+        if (a == 1)
+            SceneManager.LoadSceneAsync("Level", LoadSceneMode.Single);
+        if (a == 2)
+            SceneManager.LoadSceneAsync("Lobby", LoadSceneMode.Single);
+        if (a == 3)
+            SceneManager.LoadSceneAsync("Options", LoadSceneMode.Single);
+
+        //SceneManager.UnloadScene(currentScene);
     }
-	void loadLevel()
-    {
-        SceneManager.LoadSceneAsync("Level", LoadSceneMode.Additive);
-    }
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
 	
 	}
 }
