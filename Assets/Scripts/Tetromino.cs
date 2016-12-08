@@ -52,7 +52,7 @@ public class Tetromino : MonoBehaviour{
         if (blockEnabled && !grace) {
 			StartCoroutine (waitTime ());
 		}
-		col.rigidbody.position = roundOtherPosition (col.rigidbody.position);
+		//col.rigidbody.position = roundOtherPosition (col.rigidbody.position);
 	}
 
 	void checkUserInput (){
