@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 
     public GameObject floor;
 
+    Vector3 offset;
     float highest;
 
     // Use this for initialization
@@ -29,12 +30,12 @@ public class CameraController : MonoBehaviour
                 height = o.transform.position.y;
                 if (height > highest)
                 {
-                    highest = height;
+                    highest = height - 1.0f;
                 }
             }
         }
     }
-
+    
     void LateUpdate()
     {
         if (transform.position.y - 5.0f < highest)
