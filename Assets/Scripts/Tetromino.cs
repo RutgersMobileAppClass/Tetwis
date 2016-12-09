@@ -39,9 +39,7 @@ public class Tetromino : MonoBehaviour{
 				FindObjectOfType<Game> ().SpawnNextTetromino(0);
 			}
 			Destroy (gameObject);
-
-            PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") - 1);
-            PlayerPrefs.Save();
+            
         }
 			
 	}
@@ -51,9 +49,7 @@ public class Tetromino : MonoBehaviour{
         audioSwitch.PlayOneShot(change, 0.7F);
         if (blockEnabled && !grace) {
             print("Entered Collision");
-            //StartCoroutine (waitTime ());
-            grace = true;
-            Invoke("waitTime2", 0.3f);
+            StartCoroutine (waitTime ());
 		}
 		//col.rigidbody.position = roundOtherPosition (col.rigidbody.position);
 	}
@@ -131,20 +127,7 @@ public class Tetromino : MonoBehaviour{
 		blockEnabled = false;
 		roundPosition ();
 		FindObjectOfType<Game> ().SpawnNextTetromino(0);
-        PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + 1);
-        PlayerPrefs.Save();
         rb2d.gravityScale = 1.0f;
 		rb2d.mass = rb2d.mass * 1000000;
 	}
-    void waitTime2()
-    {
-        grace = false;
-        blockEnabled = false;
-        roundPosition();
-        FindObjectOfType<Game>().SpawnNextTetromino(0);
-        PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + 1);
-        PlayerPrefs.Save();
-        rb2d.gravityScale = 1.0f;
-        rb2d.mass = rb2d.mass * 1000000;
-    }
 }
