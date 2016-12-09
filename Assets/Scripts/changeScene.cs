@@ -5,17 +5,20 @@ using System.Collections;
 
 public class changeScene : MonoBehaviour {
 
-	public void loadLevel(int a)
+    public void loadLevel(int a)
     {
-        //Scene currentScene = SceneManager.GetActiveScene();
+        if (a == 0)
+            SceneManager.LoadSceneAsync("main_screen", LoadSceneMode.Single);
         if (a == 1)
+        {
             SceneManager.LoadSceneAsync("Level", LoadSceneMode.Single);
+            PlayerPrefs.SetInt("Mode", 1);
+        }
         if (a == 2)
-            SceneManager.LoadSceneAsync("Lobby", LoadSceneMode.Single);
-        if (a == 3)
-            SceneManager.LoadSceneAsync("Options", LoadSceneMode.Single);
-
-        //SceneManager.UnloadScene(currentScene);
+        {
+            SceneManager.LoadSceneAsync("Level", LoadSceneMode.Single);
+            PlayerPrefs.SetInt("Mode", 2);
+        }
     }
     // Update is called once per frame
     void Update () {

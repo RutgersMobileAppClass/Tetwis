@@ -1,47 +1,50 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraController : MonoBehaviour {
+public class CameraController : MonoBehaviour
+{
 
-	private int hereToStay = 0;
-	private Vector3 increment = new Vector3(0f,0.01f,0);
-	private bool inOriginalPosition = true;
+    public GameObject floor;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    Vector3 offset;
+    float highest;
 
-	void OnTriggerEnter2D(Collider2D col){
-		//print ("enter");
-		hereToStay++;
-		StartCoroutine (moveCamera ());
-	}
+    // Use this for initialization
+    void Start()
+    {
+        highest = -15.0f;
+    }
 
-	void OnTriggerExit2D(Collider2D col){
-		//print ("im out fam");
-		hereToStay--;
-	}
-		
-	IEnumerator moveCamera(){
-		//print ("waiting a sec now");
-		yield return new WaitForSeconds (3.0f);
-		//print ("value is : " + hereToStay);
-		if (hereToStay >= 1 && inOriginalPosition) {
-			for (int i = 0; i < 5000; i++) {
-				transform.position += increment;
-			}
-			inOriginalPosition = false;
-		} else if (hereToStay == 0 && !inOriginalPosition) {
-			for (int i = 0; i < 500; i++) {
-				transform.position -= increment;
-			}
-			inOriginalPosition = true;
-		}
-	}
+    // Update is called once per frame
+    void Update()
+    {
+        GameObject[] allTetros = GameObject.FindGameObjectsWithTag("Tetro");  //returns GameObject[]
+        float height = 0;
+        highest = -15.0f;
+        foreach (GameObject o in allTetros)
+        {
+            if (o.GetComponent<Rigidbody2D>().velocity.y < -4.0f)
+            {
+            }
+            else {
+                height = o.transform.position.y;
+                if (height > highest)
+                {
+                    highest = height - 1.0f;
+                }
+            }
+        }
+    }
+    
+    void LateUpdate()
+    {
+        if (transform.position.y - 5.0f < highest)
+        {
+            transform.position += new Vector3(0, 0.01f, 0);
+        }
+        else if (transform.position.y - 15.0f > highest)
+        {
+            transform.position -= new Vector3(0, 0.01f, 0);
+        }
+    }
 }
