@@ -1,6 +1,6 @@
 ## Synopsis
 
-At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+Tetwis is a mobile game that is similar to Tetris, but includes physics calculations. It is built using Unity and so it can be distributed to multiple platforms, such as iOS, Android, PC, etc, but this project includes the Android build. 
 
 ## Code Example
 
@@ -8,7 +8,7 @@ Show what the library does as concisely as possible, developers should be able t
 
 ## Motivation
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+This project is based off the game "Tricky Towers" which is for PS4 and Steam. We wanted to create a Tetris game for the mobile platform that also included physics calculations. This was also a good way to get a good introduction into game development for the Android and iOS platform.
 
 ## Installation
 
@@ -24,8 +24,24 @@ Describe and show how to run the tests with code examples.
 
 ## Contributors
 
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+To contributors: a list of problems that our 
 
 ## License
 
 A short snippet describing the license (MIT, Apache, etc.)
+
+ Copyright [2016] [Jonathan]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+   
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+Just give us credit and you can do whatever.
