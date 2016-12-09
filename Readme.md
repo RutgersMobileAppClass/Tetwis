@@ -12,7 +12,7 @@ This project is based off the game "Tricky Towers" which is for PS4 and Steam. W
 
 ## Installation
 
-Provide code examples and explanations of how to get the project.
+This project includes the .apk file for installing on Android devices. Alternatively, you can clone the entire project and then use Unity to open it. This will allow you to 1) play the game in Unity, 2) make adjustments and see real time changes. From here you could also build and run on other platforms, such as iOS.
 
 ## API Reference
 
