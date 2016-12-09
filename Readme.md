@@ -38,7 +38,7 @@ To contributors: if you would like to make a contribution to this project, you c
 
 ## License
 
-Copyright 2016 Jonathan Zelaya
+Copyright 2016 Jonathan Zelaya, Allen Tung, Fahad Mohammad, Prit Modi
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
