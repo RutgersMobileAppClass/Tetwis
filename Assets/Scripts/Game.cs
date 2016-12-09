@@ -8,11 +8,14 @@ public class Game : MonoBehaviour {
     string Next_Mino;
 
 
+
 	// Use this for initialization
 	void Start ()
     {
         Next_Mino = GetRandomTetromino();
         SpawnNextTetromino(0);
+        PlayerPrefs.SetInt("Score", 0);
+        PlayerPrefs.Save();
     }
 	
 	// Update is called once per frame

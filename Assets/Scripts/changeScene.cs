@@ -8,6 +8,8 @@ public class changeScene : MonoBehaviour {
 	public void loadLevel(int a)
     {
         //Scene currentScene = SceneManager.GetActiveScene();
+        if (a == 0)
+            SceneManager.LoadSceneAsync("main_screen", LoadSceneMode.Single);
         if (a == 1)
             SceneManager.LoadSceneAsync("Level", LoadSceneMode.Single);
         if (a == 2)
