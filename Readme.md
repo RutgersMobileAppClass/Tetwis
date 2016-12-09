@@ -3,10 +3,7 @@
 Tetwis is a mobile game that is similar to Tetris, but includes physics calculations. It is built using Unity and so it can be distributed to multiple platforms, such as iOS, Android, PC, etc, but this project includes the Android build. 
 
 Made by:
-Jonathan Zelaya
-Allen Tung
-Fahad Mohammad
-Prit Modi
+Jonathan Zelaya, Allen Tung, Fahad Mohammad, Prit Modi from Rutgers University
 
 ## Code Example
 
