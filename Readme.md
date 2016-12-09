@@ -5,7 +5,9 @@ Tetwis is a mobile game that is similar to Tetris, but includes physics calculat
 ## Code Example
 
 void start()      -  Called when the script is first created
+
 void Update()     -  Called every frame, useful to update many variables and calculate various physics aspects.
+
 void LateUpdate() -  Called after all Update functions have been called. This is useful to order script execution. Camera movement
                      is usually controlled in this method.
                      
