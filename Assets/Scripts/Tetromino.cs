@@ -25,6 +25,7 @@ public class Tetromino : MonoBehaviour{
 				FindObjectOfType<Game> ().SpawnNextTetromino(0);
 			}
 			Destroy (gameObject);
+			FindObjectOfType<Game>().reduceLife ();
 		}
 			
 	}
@@ -33,7 +34,9 @@ public class Tetromino : MonoBehaviour{
 		if (blockEnabled && !grace) {
 			StartCoroutine (waitTime ());
 		}
-		col.rigidbody.position = roundOtherPosition (col.rigidbody.position);
+		if (col != null && col.rigidbody!=null) {
+			col.rigidbody.position = roundOtherPosition (col.rigidbody.position);
+		}
 	}
 
 	void checkUserInput (){
@@ -44,6 +47,7 @@ public class Tetromino : MonoBehaviour{
 		bool moveRight = false;
 		bool moveLeft = false;
 		bool moveDown = false;
+		bool rotate = false;
 		if (Input.touchCount > 0) {
 			int midH = Screen.width / 2;
 			int midV = Screen.height / 2;
@@ -52,23 +56,44 @@ public class Tetromino : MonoBehaviour{
 				moveDown = true;
 				moveLeft = false;
 				moveRight = false;
+				rotate = false;
+			}else if(Input.GetTouch (0).position.x > (midH+midH/2) && Input.GetTouch(0).phase == TouchPhase.Began){
+				rotate = true;
+				moveDown = false;
+				moveLeft = false;
+				moveRight = false;
 			}else if(Input.GetTouch (0).position.x < midH && Input.GetTouch(0).phase == TouchPhase.Began) {
 				moveLeft = true;
 				moveRight = false;
 				moveDown = false;
-			
+				rotate = false;
 			} else if (Input.GetTouch (0).position.x > midH && Input.GetTouch(0).phase == TouchPhase.Began){
 				moveRight = true;
 				moveLeft = true;
 				moveDown = false;
+				rotate = false;
 			}
+		}
+
+		if (Input.GetKeyDown (KeyCode.RightArrow)) {
+			moveRight = true;
+			moveLeft = true;
+			moveDown = false;
+		} else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+			moveLeft = true;
+			moveRight = false;
+			moveDown = false;
+		} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
+			moveDown = true;
+			moveLeft = false;
+			moveRight = false;
 		}
 
 		if (moveRight) {
 			transform.position += new Vector3 ( 1.0f, 0, 0);
 		} else if (moveLeft) {
 			transform.position += new Vector3 (-1.0f, 0, 0);
-		} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
+		} else if (rotate) {
 			if(gameObject.name.Equals("Prefabs/Tetromino_Square")){
 				// do nothing
 			}else{
