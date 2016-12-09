@@ -20,17 +20,15 @@ https://docs.unity3d.com/ScriptReference/
 
 ## Tests
 
-Describe and show how to run the tests with code examples.
+The best way to test a game is to play it, so play it.
 
 ## Contributors
 
-To contributors: a list of problems that our 
+To contributors: if you would like to make a contribution to this project, you can contact us to see a list of current problems our game has. For example, we need a way to reduce the effect of blocks touching to create a more Tetris feel. Feel free to contact us for more explanation or for other problems.
 
 ## License
 
-A short snippet describing the license (MIT, Apache, etc.)
-
- Copyright [2016] [Jonathan]
+Copyright [2016] [Jonathan Zelaya]
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -44,4 +42,4 @@ A short snippet describing the license (MIT, Apache, etc.)
    See the License for the specific language governing permissions and
    limitations under the License.
 
-Just give us credit and you can do whatever.
+Just give us credit and you can do whatever (except make money from it). 
