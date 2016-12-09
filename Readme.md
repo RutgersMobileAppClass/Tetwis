@@ -4,7 +4,12 @@ Tetwis is a mobile game that is similar to Tetris, but includes physics calculat
 
 ## Code Example
 
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+void start()      -  Called when the script is first created
+void Update()     -  Called every frame, useful to update many variables and calculate various physics aspects.
+void LateUpdate() -  Called after all Update functions have been called. This is useful to order script execution. Camera movement
+                     is usually controlled in this method.
+                     
+Every other method is a user defined method and runs when called in the functions above.
 
 ## Motivation
 
